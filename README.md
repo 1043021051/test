@@ -30,7 +30,7 @@
 
 > 本指南介绍了如何在Ubuntu Server 18.04/Ubuntu 20.04 LTS上安装感知平台
 > 
-> 首先，你需要一台8G内存的服务器或计算机运行Sensing Platform
+> 首先，你需要一台4-8G内存的服务器或计算机运行感知平台
 
 #### 1.下载和读取镜像
 
@@ -43,7 +43,7 @@ docker load -i msaiotsensingplatform.tar
 
 #### 2.Docker文件准备
 
-为Sensing Platform创建配置文件
+为感知平台创建配置文件
 
 ```
 #创建docker执行文件
@@ -57,7 +57,7 @@ version: '3.0'
 services:
   mysp:
     restart: always
-    image: "msaiotsensingplatform:1.0.1.1-r4"
+    image: "msaiotsensingplatform:demo"
     ports:
       - "5220:9090"
       - "1883:1883"
