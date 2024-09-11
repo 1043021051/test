@@ -96,7 +96,12 @@ docker compose up -d
 启动后使用以下链接打开Web UI
 
 ```
+# web地址 
 http://localhost:5220/
+```
+默认管理员（账号、密码）
+```
+admin/password
 ```
 
 <br/>
