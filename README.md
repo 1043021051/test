@@ -110,7 +110,7 @@ admin/password
 
 ### 参考文档
 
-如果你需要对感知平台进行二次开发或者需要结合AI推理平台使用，请查看完整文档[感知平台使用文档](https://github.com/1043021051/test/blob/main/%E6%84%9F%E7%9F%A5%E5%B9%B3%E5%8F%B0%E4%BA%8C%E5%BC%80.md)
+如果你需要对感知平台进行二次开发或者需要结合AI推理平台使用，请查看完整文档[感知平台使用文档](https://github.com/1043021051/test/blob/main/README_BUILD.md)
 
 <br/>
 
