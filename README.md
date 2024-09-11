@@ -50,7 +50,7 @@ docker load -i msaiotsensingplatform.tar
 nano docker-compose.yml
 ```
 
-将下列文本内容加入到yml文件中：
+将下列文本内容加入到docker-compose.yml文件中：
 
 ```
 version: '3.0'
