@@ -233,10 +233,24 @@ export JAVA_OPTS="$JAVA_OPTS -Xlog:gc*,heap*,age*,safepoint=debug:file=@pkg.logF
 export JAVA_OPTS="$JAVA_OPTS -XX:+IgnoreUnrecognizedVMOptions -XX:+HeapDumpOnOutOfMemoryError"
 export JAVA_OPTS="$JAVA_OPTS -XX:-UseBiasedLocking -XX:+UseTLAB -XX:+ResizeTLAB -XX:+PerfDisableSharedMem -XX:+UseCondCardMark"
 export JAVA_OPTS="$JAVA_OPTS -XX:+UseG1GC -XX:MaxGCPauseMillis=500 -XX:+UseStringDeduplication -XX:+ParallelRefProcEnabled -XX:MaxTenuringThreshold=10"
+# 项目运行变量
 export LOG_FILENAME=msaiotsensingplatform.out
 export LOADER_PATH=/usr/share/msaiotsensingplatform/conf,/usr/share/msaiotsensingplatform/extensions
 export SQL_DATA_FOLDER=/usr/share/msaiotsensingplatform/data/sql
 
+# 具体配置查看msaiotsensingplatform.yml配置文件
+# POSTGRESQL配置
+export SPRING_DRIVER_CLASS_NAME=org.postgresql.Driver
+export SPRING_DATASOURCE_URL=jdbc:postgresql://localhost:5432/msaiotsensingplatform
+export SPRING_DATASOURCE_USERNAME=msaiotsensingplatform
+export SPRING_DATASOURCE_PASSWORD=password
+# CASSANDRA
+export CASSANDRA_KEYSPACE_NAME=msaiotsensingplatform
+export CASSANDRA_HOME=/opt/cassandra
+export CASSANDRA_URL=localhost:9042
+export CASSANDRA_KEYSPACE_NAME=msaiotsensingplatform
+export CASSANDRA_USERNAME=
+export CASSANDRA_PASSWORD=
 ```
 
 ##### 5.运行安装脚本
