@@ -102,7 +102,7 @@ http://localhost:5220/
 
 ### 参考文档
 
-如果你需要二次开发或者需要结合AI推理平台使用，请查看[Milesight 开发文档](http://www.baidu.com)
+如果你需要二次开发或者需要结合AI推理平台使用，请查看[Milesight 开发文档](https://github.com/1043021051/test/blob/main/%E6%84%9F%E7%9F%A5%E5%B9%B3%E5%8F%B0%E4%BA%8C%E5%BC%80.md)
 
 <br/>
 
