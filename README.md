@@ -122,7 +122,7 @@ http://localhost:5220/
 
 加入我们的社区，获取帮助、分享经验、讨论项目相关内容：
 
-- [Discord](https://discord.gg/tjQ94kXb "Discord")
+- [Discord](https://discord.gg/vNFxbwfErm "Discord")
 - [Github](https://github.com/Milesight-IoT "GitHub")
 
 ## 关注Milesight
