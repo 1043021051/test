@@ -1,4 +1,4 @@
-# AIoT Sensing Platform 
+# 感知平台 
 
 ![4acb54a49175fc2c38a9a2b1c8b8bd4c.png](4acb54a49175fc2c38a9a2b1c8b8bd4c.png)
 
@@ -26,7 +26,7 @@
 
 ## 快速开始
 
-### Docker安装AIoT Sensing Platform
+### Docker安装感知平台
 
 > 本指南介绍了如何在Ubuntu Server 18.04/Ubuntu 20.04 LTS上安装感知平台
 > 
@@ -102,11 +102,11 @@ http://localhost:5220/
 
 ### 参考文档
 
-如果你需要对感知平台进行二次开发或者需要结合AI推理平台使用，请查看完整文档[Milesight 感知平台使用文档](https://github.com/1043021051/test/blob/main/%E6%84%9F%E7%9F%A5%E5%B9%B3%E5%8F%B0%E4%BA%8C%E5%BC%80.md)
+如果你需要对感知平台进行二次开发或者需要结合AI推理平台使用，请查看完整文档[感知平台使用文档](https://github.com/1043021051/test/blob/main/%E6%84%9F%E7%9F%A5%E5%B9%B3%E5%8F%B0%E4%BA%8C%E5%BC%80.md)
 
 <br/>
 
-## 贡献指南（若有，编写贡献指南文本或是引用外部链接）
+## 贡献指南
 
 欢迎任何形式的贡献！请遵循以下步骤提交您的贡献：
 
@@ -116,7 +116,6 @@ http://localhost:5220/
 4. 推送到分支 (git push origin feature/AmazingFeature)
 5. 打开一个 Pull Request
 
-更多详情请参阅 [贡献指南](https://www.milesight.com/ "贡献指南")。
 
 ## 社区
 
