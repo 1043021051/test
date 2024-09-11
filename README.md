@@ -20,8 +20,11 @@
 
 **设备OTA升级**：支持对设备进行OTA升级
 
-**AI推理**：感知平台结合AI推理平台可实现图片ROI识别，识别后回推结果到感知平台，其中AI推理平台支持onnx模型的拓展
+**AI推理**：感知平台结合AI推理平台可实现图片ROI识别，识别后回推结果到感知平台，其中AI推理平台支持onnx模型的拓展，如需结合AI推理平台使用请查看[Milesight AIoT Inference Platform 使用文档](https://resource.milesight.com/milesight/iot/document/aiot-inference-platform-user-guide-en.pdf)
 
+- 关系图如下
+  
+![AI关系图](flowchart.png)
 <br/>
 
 ## 快速开始
