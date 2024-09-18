@@ -175,7 +175,7 @@ application文件夹下的`msaiotsensingplatform.deb`文件包
 
 #### 先决条件
 
-> 本指南介绍了如何在Ubuntu Server 18.04/Ubuntu 20.04 LTS上安装感知平台。
+> 本指南介绍了如何在Ubuntu Server 18.04/Ubuntu 20.04 LTS/Ubuntu Jammy 22.04 LTS/Ubuntu Kinetic 22.10上安装感知平台。
 硬件要求取决于选择的数据库和连接到系统的设备数量。
 需要一台1G内存的服务器运行感知平台和PostgreSQL。
 需要一台4-8G内存的服务器运行感知平台、PostgreSQL和Cassandra。
