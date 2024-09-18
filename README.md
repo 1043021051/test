@@ -31,7 +31,7 @@
 
 ### Docker安装感知平台
 
-> 本指南介绍了如何在Ubuntu Server 18.04/Ubuntu 20.04 LTS上安装感知平台
+> 本指南介绍了如何在Ubuntu Server 18.04/Ubuntu 20.04 LTS/Ubuntu Jammy 22.04 LTS/Ubuntu Kinetic 22.10上安装感知平台
 > 
 > 首先，你需要一台4-8G内存的服务器或计算机运行感知平台
 
