@@ -1,70 +1,65 @@
-# 感知平台 
+# AIoT Sensing Platform
 
 ![4acb54a49175fc2c38a9a2b1c8b8bd4c.png](4acb54a49175fc2c38a9a2b1c8b8bd4c.png)
 
-感知平台是基于Thingsboard（v3.5）开源项目二次开发的一个产品，支持通过MQTT 协议搜集和存储来自感知相机的图片数据，以及实现批量远程管理和维护感知相机的功能。
+AIoT Sensing Platform, based on the open-source Thingsboard (v3.5), provide an efficient solution to collect and store data from sensing cameras via MQTT protocol. Besides, the Milesight AIoT Sensing Platform is able to manage and maintain the remote sensing cameras.
 
-此外，感知平台支持结合AI推理平台（内置表计识别等模型）识别图片上的数据并将识别结果推送通过MQTT或HTTP协议推送到第三方平台。其中推理平台支持onnx模型的拓展，如需结合AI推理平台使用请查看[推理平台用户手册](https://resource.milesight.com/milesight/iot/document/aiot-inference-platform-user-guide-en.pdf)。
+Moreover, AIoT Sensing Platform can integrate with AIoT Inference Platform to recognize the picture data with equipped AI models and push the results to other platforms via MQTT or HTTP protocol. AIoT Inference Platform supports the extension of onnx model. For more information please refer to [AIoT Inference Platform User Guide](https://resource.milesight.com/milesight/iot/document/aiot-inference-platform-user-guide-en.pdf).
 
-![AI关系图](ai_image.png)
+![image-20240918162522074](ai_image.png)
 
 <br/>
 
-## 功能特性
+## Key Features
 
-**图片采集和设备管理**：设备管理列表，可以查看设备信息，活跃状态和最新遥测数据，图片数据可以绘制ROI识别，OTA升级固件选择等
-
-**可视化仪表盘**：可视化组件操作面板，提供3种仪表板，可以监控设备全局状态、图片动态变化和设备告警信息
-
-**规则引擎和接收方**：提供多种类型规则链（一旦收到数据、低电量、设备不活跃等)，支持通过MQTT/HTTP转发图片数据到第三方平台
-
-**感知对象定义**：支持定义图片ROI区域用于识别
-
-**设备配置和升级**：支持对设备进行远程OTA配置或升级
-
-**结合推理平台**：结合AI推理平台可实现图片ROI识别，识别后回推结果到感知平台
+- Manage bulks of devices and display the latest telemetry data
+- Support to display as dashboard and provides 3 kinds of widgets to monitor device status, picture changes and device alarms
+- Provides several types of trigger rules (Once data received、Low battery、Devices become inactive, etc.) and forward picture information to MQTT/HTTP recipients
+- Support to draw the ROI area and define the objects for recognition of data
+- Support to upgrade or deploy the configurations to devices over the air
+- Provide the solution to achieve the picture recognition combing with AIoT Inference Platform
 
 
 
+## Quick Start
 
-## 快速开始
+### Install AIoT Sensing Platform
 
-### 安装感知平台
+> This quick start guide introduces the steps to install AIoT Sensing Platform to a Ubuntu server. Before starting please ensure the [docker](https://docs.docker.com/engine/install/ubuntu/) is installed in your server.
+>
 
-本指南介绍了如何在Ubuntu服务器上安装感知平台。安装前请确保您的服务器已经安装了[docker](https://docs.docker.com/engine/install/ubuntu/)。
+#### Prerequisites
 
-#### 先决条件
-
-##### 硬件要求
+##### **Hardware**
 
 - RAM: 4-8 GB
 
-##### 操作系统要求
+##### **Operating System**
 
 - Ubuntu Kinetic 22.10
 - Ubuntu Jammy 22.04 (LTS)
 - Ubuntu Focal 20.04 (LTS)
 - Ubuntu Bionic 18.04 (LTS)
 
-#### 安装步骤
+#### Install Steps
 
-##### 1. 下载和读取镜像
+##### 1. Download and Push Image
 
 ```
-# 下载镜像
+# Download image
 wget https://resource.milesight.com/milesight/iot/software/msaiotsensingplatform.tar
-# 加载docker镜像
+# Load docker image
 docker load -i msaiotsensingplatform.tar
 ```
 
-##### 2. 创建Docker Compose文件
+##### 2. Create Docker Compose File
 
 ```
-#创建docker执行文件
+#Create docker compose file
 nano docker-compose.yml
 ```
 
-将下列文本内容加入到docker-compose.yml文件中：
+Add below contents to docker-compose.yml file：
 
 ```
 version: '3.0'
@@ -84,11 +79,11 @@ services:
       - /var/mysp-logs:/var/log/msaiotsensingplatform
 ```
 
-##### 3. 为新建的文件夹创建用户权限
+##### 3. Create User Permissions for New Folders
 
 ```
 sudo useradd -m msaiotsensingplatform
-sudo groupadd msaiotsensingplatform（提示已存在忽略）
+sudo groupadd msaiotsensingplatform  //ignore the exist error
 sudo usermod -aG msaiotsensingplatform msaiotsensingplatform
 mkdir -p /var/mysp-data && sudo chown -R msaiotsensingplatform:msaiotsensingplatform /var/mysp-data
 chmod -R 777 /var/mysp-data
@@ -96,54 +91,54 @@ mkdir -p /var/mysp-logs && sudo chown -R msaiotsensingplatform:msaiotsensingplat
 chmod -R 777 /var/mysp-logs
 ```
 
-##### 4. 在docker配置文件对应目录下运行镜像
+##### 4. Run the Image
 
-启动镜像：
+Start the image:
 
 ```
 docker compose up -d
 ```
 
-启动后使用以下链接打开平台网页：
+Open the Web GUI of AIoT Sensing platform:
 
 ```
-# 默认网址 
+# Default web GUI address
 http://localhost:5220/
 ```
-默认账号（用户名、密码）：
+Log in the web GUI via default administrator account: 
 ```
 admin/password
 ```
 
 <br/>
 
-## 进一步使用
+## More Use
 
-### 参考文档
+### Reference
 
-如果你需要对感知平台进行二次开发或者需要结合AIoT推理平台使用，请查看完整文档：[感知平台使用文档](https://github.com/1043021051/test/blob/main/README_BUILD.md)
+If you require the secondary development of AIoT Sensing Platform or work it with AIoT Inference Platform,  refer to [AIoT Sensing Platform Build Guide](https://github.com/1043021051/test/blob/main/README_BUILD.md).
 
 <br/>
 
-## 贡献指南
+## Contributing
 
-欢迎任何形式的贡献！请遵循以下步骤提交您的贡献：
+Welcome to contribute to this project following below steps:
 
-1. Fork 本仓库
-2. 创建您的特性分支 (git checkout -b feature/AmazingFeature)
-3. 提交您的更改 (git commit -m 'Add some AmazingFeature')
-4. 推送到分支 (git push origin feature/AmazingFeature)
-5. 打开一个 Pull Request
+1. Fork this repository
+2. Create a branch to work on (git checkout -b feature/AmazingFeature)
+3. Make and commit your changes (git commit -m 'Add some AmazingFeature')
+4. Push your changes to branch (git push origin feature/AmazingFeature)
+5. Make a pull request
 
 
-## 社区
+## Community
 
-加入我们的社区，获取帮助、分享经验、讨论项目相关内容：
+Welcome to join the community to get involved in this project to report bugs, share the experiences, make discussions:
 
 - [Discord](https://discord.gg/vNFxbwfErm "Discord")
 - [Github](https://github.com/Milesight-IoT "GitHub")
 
-## 关注Milesight
+## About Milesight
 
 - [Linkedin](https://www.linkedin.com/company/milesightiot "Linkedin")
 - [Youtube](https://www.youtube.com/c/MilesightIoT "Youtube")
@@ -152,6 +147,6 @@ admin/password
 - [Twitter](https://twitter.com/MilesightIoT "Twitter")
 - [Milesight-Evie](https://www.linkedin.com/in/milesight-evie/ "Milesight-Evie")
 
-## 许可证
+## License
 
-此存储库在 [MIT](LICENSE)下可用。
+This project is released under the MIT license. See also [LICENSE](LICENSE).
