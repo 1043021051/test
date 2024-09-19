@@ -6,7 +6,7 @@ AIoT Sensing Platform, based on the open-source Thingsboard (v3.5), provide an e
 
 Moreover, AIoT Sensing Platform can integrate with AIoT Inference Platform to recognize the picture data with equipped AI models and push the results to other platforms via MQTT or HTTP protocol. AIoT Inference Platform supports the extension of onnx model. For more information please refer to [AIoT Inference Platform User Guide](https://resource.milesight.com/milesight/iot/document/aiot-inference-platform-user-guide-en.pdf).
 
-![image-20240918162522074](http://harry-image-md.oss-cn-hongkong.aliyuncs.com/img/image-20240918162522074.png)
+![image-20240918162522074](ai_image.png)
 
 <br/>
 
