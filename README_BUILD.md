@@ -1,4 +1,4 @@
-# 感知平台
+# AIoT感知平台
 
 ## 项目研发说明
 
@@ -54,7 +54,7 @@
 
 <br/>
 
-### 项目安装-1.编译项目
+### 项目安装-1. 编译项目
 
 #### 克隆仓库
 
@@ -105,9 +105,9 @@ ls application\src\main\resources\static
 
 ##### 2.编译包所在位置：
 
-application文件夹下的`msaiotsensingplatform.deb`文件包
+`msaiotsensingplatform.deb`文件包在application文件夹下。
 
-如果部分依赖无法拉取`maven/setting.xm`可以参考如下
+如果执行编译时部分依赖无法拉取，可参考如下示例修改`maven/setting.xml`文件：
 
 ```
   <profiles>
@@ -175,10 +175,17 @@ application文件夹下的`msaiotsensingplatform.deb`文件包
 
 #### 先决条件
 
-> 本指南介绍了如何在Ubuntu Server 18.04/Ubuntu 20.04 LTS/Ubuntu Jammy 22.04 LTS/Ubuntu Kinetic 22.10上安装感知平台。
-硬件要求取决于选择的数据库和连接到系统的设备数量。
-需要一台1G内存的服务器运行感知平台和PostgreSQL。
-需要一台4-8G内存的服务器运行感知平台、PostgreSQL和Cassandra。
+##### 硬件要求
+
+- RAM: 1 GB用于运行感知平台和PostgreSQL，或者4-8GB用于运行感知平台、PostgreSQL和Cassandra
+- 其它要求取决于选择的数据库和连接到系统的设备数量
+
+##### 操作系统要求
+
+- Ubuntu Kinetic 22.10
+- Ubuntu Jammy 22.04 (LTS)
+- Ubuntu Focal 20.04 (LTS)
+- Ubuntu Bionic 18.04 (LTS)
 
 <br/>
 
@@ -261,13 +268,13 @@ sudo /usr/share/msaiotsensingplatform/bin/install/install.sh --loadDemo
 
 ##### 6.启动服务
 
-执行以下命令以启动感知平台
+执行以下命令以启动感知平台：
 
 ```
 sudo service msaiotsensingplatform start
 ```
 
-启动后使用以下链接打开Web UI
+启动后使用以下链接打开平台网页：
 
 ```
 http://localhost:8080/
@@ -277,17 +284,17 @@ http://localhost:8080/
 
 #### Docker安装
 
-##### 1.进入打包文件位置
+##### 1. 进入打包文件位置
 
 ```
 cd msa/tb/docker-iot
 ```
 
-##### 2.复制deb包到当前位置
+##### 2. 复制deb包到当前位置
 
 将编译好的deb包复制到msa/tb/docker-iot下
 
-##### 3.构建Docker镜像
+##### 3. 构建Docker镜像
 
 ```
 # 构建镜像
@@ -296,23 +303,23 @@ docker build -t msaiotsensingplatform:test .
 docker save msaiotsensingplatform:test -o msaiotsensingplatform.tar
 ```
 
-##### 4.docker准备
+##### 4. docker准备
 
-load镜像
+加载镜像：
 
 ```
 # 安装docker image
 docker load < ~/msaiotsensingplatform.tar
 ```
 
-为Sensing Platform创建配置文件
+创建docker compose文件：
 
 ```
 #创建docker执行文件
 nano docker-compose.yml
 ```
 
-将下列文本内容加入到yml文件中：
+将下列文本内容加入到docker-compose.yml文件中：
 
 ```
 version: '3.0'
@@ -332,7 +339,7 @@ services:
       - /var/mysp-logs:/var/log/msaiotsensingplatform
 ```
 
-命令参数介绍
+**命令参数介绍**
 
 - 8080:9090 - 将本地端口8080连接到公开的内部HTTP端口9090（请勿改变此配置，否则导致部分功能无法使用）
 - 1883:1883 - 将本地端口1883连接到公开的内部MQTT端口1883
@@ -345,7 +352,7 @@ services:
 - /var/mysp-logs:/var/log/msaiotsensingplatform - 将平台的目录挂载到本地日志目录/var/mysp-logs
 
 
-##### 5.为新建的文件夹创建用户权限
+##### 5. 为新建的文件夹创建用户权限
 
 ```
 sudo useradd -m msaiotsensingplatform
@@ -357,15 +364,15 @@ mkdir -p /var/mysp-logs && sudo chown -R msaiotsensingplatform:msaiotsensingplat
 chmod -R 777 /var/mysp-logs
 ```
 
-##### 6.在docker配置文件对应目录下运行镜像
+##### 6. 在docker配置文件对应目录下运行镜像
 
-启动镜像
+启动镜像：
 
 ```
 docker compose up -d
 ```
 
-启动后使用以下链接打开Web UI
+启动后使用以下链接打开平台网页：
 
 ```
 http://localhost:8080/
@@ -376,45 +383,47 @@ http://localhost:8080/
 
 ### 参考文档
 
-Milesight documentation is hosted on:
+星纵智能平台文档:
 - [Milesight AIoT Sensing Platform](https://resource.milesight.com/milesight/iot/document/aiot-sensing-platform-user-guide.pdf "Sensing Platform")
 - [Milesight AIoT Inference Platform](https://resource.milesight.com/milesight/iot/document/aiot-inference-platform-user-guide-en.pdf)
 
-ThingsBoard documentation is hosted on:
+ThingsBoard文档:
 - [thingsboard.io](https://thingsboard.io/docs)
 
 <br/>
 
 ### 可能遇到的问题
 
-#### 如何连接设备？
+#### 如何连接设备到平台？
+
+请参照以下步骤配置设备连接平台：
+
+1. 确保设备联网且可达感知平台服务器；
+2. 选择数据上报平台为Sensing Platform并配置如下参数：
 
 ```
 协议：MQTT
-Host：已搭建平台IP地址
-默认端口：1883
+主机：已搭建感知平台IP地址
+默认MQTT端口：1883
 客户端ID: 设备SN
-Username：设备SN
-Password：（为空不填）
+用户名：设备SN
+密码：（为空不填）
+主题：v1/devices/me/telemetry
 ```
 
 <br/>
 
-#### 遥测数据说明
+#### 遥测数据内容说明
 
-TOPIC:
+设备支持以JSON格式向感知平台推送图片数据。
 
-```
-v1/devices/me/telemetry
-```
-
-示例数据：
+数据示例：
 
 ```
 {
-    ts:1725904500258, //时间戳
+    ts:1725904500258, //时间戳，单位：ms
     data:{
-        "image":"图片base64str",
+        "image":"data:image/jpeg;base64,/9j/4AAQSkZJRgABAQA...(Image code)",
         // 其他属性...
         
     }
@@ -423,19 +432,22 @@ v1/devices/me/telemetry
 
 <br/>
 
-#### 目前实现三个规则
+#### 规则引擎说明
 
-Once data received：一旦所选感知对象的通道接收到数据，就对配置的接收方以SON格式发送该数据
-Low battery：一旦所选设备推送的电量信息低于所配置的值，则执行所选的动作(推送数据给接收方 或 展示在仪表盘组件上)
+感知平台支持配置如下规则引擎：
+
+- 一旦收到数据：一旦所选感知对象的通道接收到数据，则发送JSON格式的图片数据到配置的MQTT/HTTP接收方
+- 低电量：一旦所选设备推送的电量信息低于所配置的阈值，则推送低电量告警给接收方或展示在仪表盘组件上
 
 ```
-# 遥测时候需要上报指定字段
+# 低电量告警上报内容
 {
   "threshold":10 //电量
 }
 ```
 
-Devices become inactive：一旦所选设备从活跃状态变为不活跃，则执行所选动作(推送数据给接收方 或展示在仪表盘组件上)
+- 设备不活跃：一旦所选设备从活跃状态变为不活跃，则推送低电量告警给接收方或展示在仪表盘组件上
+- 一旦识别到结果：一旦感知平台从推理平台获取到所选感知对象的通道的识别结果，则发送JSON格式的识别结果到配置的MQTT/HTTP接收方
 
 <br/>
 
@@ -467,4 +479,4 @@ Devices become inactive：一旦所选设备从活跃状态变为不活跃，则
 
 ## 许可证
 
-此存储库在 [MIT](LICENSE)下可用
+此存储库在 [MIT](LICENSE)下可用。
