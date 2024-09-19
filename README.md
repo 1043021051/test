@@ -2,51 +2,62 @@
 
 ![4acb54a49175fc2c38a9a2b1c8b8bd4c.png](4acb54a49175fc2c38a9a2b1c8b8bd4c.png)
 
-感知平台是基于Thingsboard（v3.5）开源项目二次开发的一个产品。在感知平台中，感知摄像机通过MQTT/HTTP方式将抓拍的图片和其他信息传输到感知平台，
-而感知平台通过规则引擎将图片或其他内容推送到客户的具体应用平台中，起到一个规范数据包的数据中台作用，
-并且我们提供了AI模块（AI推理平台）结合感知平台，将识别后的数据推送到具体的应用平台中，AI推理平台已内置表计识别等模型，可部署后直接使用。
+感知平台是基于Thingsboard（v3.5）开源项目二次开发的一个产品，支持通过MQTT 协议搜集和存储来自感知相机的图片数据，以及实现批量远程管理和维护感知相机的功能。
+
+此外，感知平台支持结合AI推理平台（内置表计识别等模型）识别图片上的数据并将识别结果推送通过MQTT或HTTP协议推送到第三方平台。其中推理平台支持onnx模型的拓展，如需结合AI推理平台使用请查看[推理平台用户手册](https://resource.milesight.com/milesight/iot/document/aiot-inference-platform-user-guide-en.pdf)。
+
+![AI关系图](flowchart.png)
 
 <br/>
 
 ## 功能特性
 
-**设备管理**：设备管理列表，可以查看设备信息，活跃状态和最新遥测数据，图片数据可以绘制ROI识别，OTA升级固件选择等
+**图片采集和设备管理**：设备管理列表，可以查看设备信息，活跃状态和最新遥测数据，图片数据可以绘制ROI识别，OTA升级固件选择等
 
-**Dashboard仪表盘**：可视化组件操作面板，提供3种仪表板，可以监控设备全局状态、图片动态变化和设备告警信息
+**可视化仪表盘**：可视化组件操作面板，提供3种仪表板，可以监控设备全局状态、图片动态变化和设备告警信息
 
-**规则引擎和接收方**：三种类型规则链（Once data received、Low battery、Devices become inactive)
+**规则引擎和接收方**：提供多种类型规则链（一旦收到数据、低电量、设备不活跃等)，支持通过MQTT/HTTP转发图片数据到第三方平台
 
-**感知对象定义**：支持对需要采集的设备数据进行定义
+**感知对象定义**：支持定义图片ROI区域用于识别
 
-**设备OTA升级**：支持对设备进行OTA升级
+**设备配置和升级**：支持对设备进行远程OTA配置或升级
 
-**AI推理**：感知平台结合AI推理平台可实现图片ROI识别，识别后回推结果到感知平台，其中AI推理平台支持onnx模型的拓展，如需结合AI推理平台使用请查看[Milesight AIoT Inference Platform 使用文档](https://resource.milesight.com/milesight/iot/document/aiot-inference-platform-user-guide-en.pdf)
+**结合推理平台**：结合AI推理平台可实现图片ROI识别，识别后回推结果到感知平台
 
-- 关系图如下
-  
-![AI关系图](flowchart.png)
-<br/>
+
+
 
 ## 快速开始
 
-### Docker安装感知平台
+### 安装感知平台
 
-> 本指南介绍了如何在Ubuntu Server 18.04/Ubuntu 20.04 LTS/Ubuntu Jammy 22.04 LTS/Ubuntu Kinetic 22.10上安装感知平台
-> 
-> 首先，你需要一台4-8G内存的服务器或计算机运行感知平台
+本指南介绍了如何在Ubuntu服务器上安装感知平台。安装前请确保您的服务器已经安装了[docker](https://docs.docker.com/engine/install/ubuntu/)。
 
-#### 1.下载和读取镜像
+#### 先决条件
+
+##### 硬件要求
+
+- RAM: 4-8 GB
+
+##### 操作系统要求
+
+- Ubuntu Kinetic 22.10
+- Ubuntu Jammy 22.04 (LTS)
+- Ubuntu Focal 20.04 (LTS)
+- Ubuntu Bionic 18.04 (LTS)
+
+#### 安装步骤
+
+##### 1. 下载和读取镜像
 
 ```
 # 下载镜像
 wget https://resource.milesight.com/milesight/iot/software/msaiotsensingplatform.tar
-# 安装docker image
+# 加载docker镜像
 docker load -i msaiotsensingplatform.tar
 ```
 
-#### 2.Docker文件准备
-
-为感知平台创建配置文件
+##### 2. 创建Docker Compose文件
 
 ```
 #创建docker执行文件
@@ -73,7 +84,7 @@ services:
       - /var/mysp-logs:/var/log/msaiotsensingplatform
 ```
 
-#### 3.为新建的文件夹创建用户权限
+##### 3. 为新建的文件夹创建用户权限
 
 ```
 sudo useradd -m msaiotsensingplatform
@@ -85,21 +96,21 @@ mkdir -p /var/mysp-logs && sudo chown -R msaiotsensingplatform:msaiotsensingplat
 chmod -R 777 /var/mysp-logs
 ```
 
-#### 4.在docker配置文件对应目录下运行镜像
+##### 4. 在docker配置文件对应目录下运行镜像
 
-启动镜像
+启动镜像：
 
 ```
 docker compose up -d
 ```
 
-启动后使用以下链接打开Web UI
+启动后使用以下链接打开平台网页：
 
 ```
-# web地址 
+# 默认网址 
 http://localhost:5220/
 ```
-默认管理员（账号、密码）
+默认账号（用户名、密码）：
 ```
 admin/password
 ```
@@ -110,7 +121,7 @@ admin/password
 
 ### 参考文档
 
-如果你需要对感知平台进行二次开发或者需要结合AI推理平台使用，请查看完整文档[感知平台使用文档](https://github.com/1043021051/test/blob/main/README_BUILD.md)
+如果你需要对感知平台进行二次开发或者需要结合AIoT推理平台使用，请查看完整文档：[感知平台使用文档](https://github.com/1043021051/test/blob/main/README_BUILD.md)
 
 <br/>
 
@@ -143,4 +154,4 @@ admin/password
 
 ## 许可证
 
-此存储库在 [MIT](LICENSE)下可用
+此存储库在 [MIT](LICENSE)下可用。
