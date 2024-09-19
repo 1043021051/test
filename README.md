@@ -6,7 +6,7 @@
 
 此外，感知平台支持结合AI推理平台（内置表计识别等模型）识别图片上的数据并将识别结果推送通过MQTT或HTTP协议推送到第三方平台。其中推理平台支持onnx模型的拓展，如需结合AI推理平台使用请查看[推理平台用户手册](https://resource.milesight.com/milesight/iot/document/aiot-inference-platform-user-guide-en.pdf)。
 
-![AI关系图](flowchart.png)
+![AI关系图](ai_image.png)
 
 <br/>
 
