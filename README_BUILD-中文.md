@@ -254,8 +254,7 @@ export SPRING_DATASOURCE_PASSWORD=password
 # CASSANDRA
 export CASSANDRA_KEYSPACE_NAME=msaiotsensingplatform
 export CASSANDRA_HOME=/opt/cassandra
-export CASSANDRA_URL=localhost:9042
-export CASSANDRA_KEYSPACE_NAME=msaiotsensingplatform
+export CASSANDRA_URL=localhost:9042 
 export CASSANDRA_USERNAME=
 export CASSANDRA_PASSWORD=
 ```
